@@ -1,0 +1,37 @@
+#include <SPI.h>
+#include<WiFi.h>
+
+char ssid[]="POCO M2 Pro";
+char password[]="2444666668888888";
+IPAddress ip, subnet; //this is used to store ip upto 4 octs
+
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600); //it take the input from the keyboard 
+  Serial.print("Attempt to connect");
+  Serial.print(ssid);
+
+  WiFi.begin(ssid,password);
+  while(WiFi.status() != WL_CONNECTED)
+  {
+    Serial.print(",");
+    delay(500);
+    
+    }
+Serial.println("\n You are connected to the network");
+while(WiFi.localIP()==INADDR_NONE)
+{
+  Serial.print(".");
+  delay(300);
+  }
+  ip=WiFi.localIP();
+  Serial.print("IP ADRESS:");
+  Serial.println(ip);
+
+  subnet=WiFi.subnetMask();
+  Serial.print("subnet mask address");
+  Serial.println(subnet);
+}
+void loop(){
+  }
